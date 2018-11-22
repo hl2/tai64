@@ -28,12 +28,6 @@ console.log(now.toHexString()); // TAI64 label as Hex string
 console.log(now.toByteArray()); // TAI64 label as byte array
 ```
 
-## Implementation details (TODO)
-
-- Types
-- Immutability
-- No TAI64n
-
 ## Further readings
 
 - [UTC, TAI, and UNIX time](https://cr.yp.to/proto/utctai.html)
