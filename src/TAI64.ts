@@ -23,7 +23,7 @@
 
 import Long from "long";
 import { LabelRangeError } from "./LabelRangeError";
-import { addLeapSeconds } from "./leapSeconds";
+import { getLeapSeconds } from "./LeapSeconds";
 
 // TODO: validation and error handling
 class TAI64 {
@@ -37,9 +37,8 @@ class TAI64 {
 
   static fromDate(date: Date) {
     const timestamp = Math.floor(date.getTime() / 1000);
-    const timestampWithLeapSeconds = addLeapSeconds(timestamp);
 
-    return TAI64.EPOCH.add(timestampWithLeapSeconds);
+    return TAI64.EPOCH.add(timestamp + getLeapSeconds(timestamp));
   }
 
   static fromHexString(hexString: string) {
