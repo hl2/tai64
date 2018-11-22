@@ -1,8 +1,14 @@
 {
   "name": "tai64",
   "version": "0.0.0",
+  "description": "Typescript implementation of TAI64 timestamps for Node.js and the browser",
   "author": "hl2",
   "license": "MIT",
+  "homepage": "https://github.com/hl2/tai64#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hl2/tai64.git"
+  },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
