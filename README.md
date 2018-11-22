@@ -17,13 +17,13 @@ npm install --save tai64
 2. Usage
 
 ```javascript
-import { tai64, TAI64 } from "tai64"
+import { tai64, TAI64 } from "tai64";
 
-const now = tai64()
+const now = tai64();
 const fromUnix: TAI64 = tai64(new Date());
 
-console.log( now.toHexString() ); // TAI64 label as Hex string
-console.log( now.toByteArray() ); // TAI64 label as byte array
+console.log(now.toHexString()); // TAI64 label as Hex string
+console.log(now.toByteArray()); // TAI64 label as byte array
 ```
 
 ## Implementation details (TODO)
