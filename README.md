@@ -1,5 +1,7 @@
 # TAI64
 
+[![Build Status](https://travis-ci.com/hl2/tai64.svg?token=tSMJcyr4W5f93JMvoe6S&branch=master)](https://travis-ci.com/hl2/tai64)
+
 ⚛️ Typescript implementation of TAI64 timestamps for [Node.js](https://nodejs.org/en/) and the browser.
 
 > TAI refers to International Atomic Time (Temps Atomique International in French), the current international real-time standard. One TAI second is defined as the duration of `9192631770` periods of the radiation corresponding to the transition between the two hyperfine levels of the ground state of the cesium atom.
