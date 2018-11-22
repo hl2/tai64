@@ -36,7 +36,7 @@ console.log(now.toByteArray()); // TAI64 label as byte array
 
 ## Further readings
 
-- [UTC, TAI, and UNIX time](https://cr.yp.to/libtai/tai64.html)
+- [UTC, TAI, and UNIX time](https://cr.yp.to/proto/utctai.html)
 - [What’s this whole TAI64 thing about?](http://dyscour.se/post/12679668746/using-tai64-for-logging)
 - [International Atomic Time](https://en.wikipedia.org/wiki/International_Atomic_Time)
 - [Leap second](https://en.wikipedia.org/wiki/Leap_second)
