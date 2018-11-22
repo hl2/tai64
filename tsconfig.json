@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "pretty": true,
+    "outDir": "lib",
+    "declaration": true,
+    "target": "es2015",
+    "lib": ["es2015"],
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true
+  },
+  "include": ["src"]
+}
