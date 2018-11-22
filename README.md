@@ -40,4 +40,4 @@ console.log( now.toByteArray() ); // TAI64 label as byte array
 
 ## License
 
-TAI64 is [MIT Licensed](../blob/master/LICENSE.md).
+TAI64 is [MIT Licensed](./LICENSE.md).
