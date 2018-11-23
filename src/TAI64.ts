@@ -25,20 +25,20 @@ import Long from "long";
 import { LabelRangeError } from "./LabelRangeError";
 import { getLeapSeconds } from "./LeapSeconds";
 
-// TODO: validation and error handling
 class TAI64 {
   static readonly EPOCH = new TAI64(Long.MAX_VALUE.shiftRight(1).add(1));
 
   static now() {
-    const now = new Date();
+    const unixTimestamp = Math.floor(Date.now() / 1000);
 
-    return TAI64.fromDate(now);
+    return TAI64.fromUnixTimestamp(unixTimestamp);
   }
 
-  static fromDate(date: Date) {
-    const timestamp = Math.floor(date.getTime() / 1000);
+  static fromUnixTimestamp(unixTimestamp: number) {
+    const leapSeconds = getLeapSeconds(unixTimestamp);
+    const label = TAI64.EPOCH.label.add(unixTimestamp + leapSeconds);
 
-    return TAI64.EPOCH.add(timestamp + getLeapSeconds(timestamp));
+    return new TAI64(label);
   }
 
   static fromHexString(hexString: string) {
@@ -63,13 +63,6 @@ class TAI64 {
     this.label = label;
   }
 
-  add(seconds: number) {
-    const secondsAsLong = Long.fromNumber(seconds);
-    const newLabel = this.label.add(secondsAsLong);
-
-    return new TAI64(newLabel);
-  }
-
   toHexString() {
     return this.label.toString(16);
   }
@@ -79,13 +72,13 @@ class TAI64 {
   }
 }
 
-const tai64 = (value?: string | Date | number[]) => {
-  if (value instanceof Date) {
-    return TAI64.fromDate(value);
-  } else if (value instanceof Array) {
-    return TAI64.fromByteArray(value);
-  } else if (typeof value === "string") {
+const tai64 = (value?: string | number | number[]) => {
+  if (typeof value === "string") {
     return TAI64.fromHexString(value);
+  } else if (typeof value === "number") {
+    return TAI64.fromUnixTimestamp(value);
+  } else if (Array.isArray(value)) {
+    return TAI64.fromByteArray(value);
   }
 
   return TAI64.now();
