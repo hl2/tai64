@@ -10,22 +10,26 @@ https://cr.yp.to/libtai/tai64.html#tai64
 
 ## Getting started
 
-1. Installation
+### Installation
 
 ```shell
 npm install --save tai64
 ```
 
-2. Usage
+### Usage
 
 ```javascript
 import { tai64, TAI64 } from "tai64";
 
-const now = tai64();
-const fromUnix: TAI64 = tai64(new Date());
+const now = tai64(); // You can use the tai64 method to get a TAI64 instance
 
-console.log(now.toHexString()); // TAI64 label as Hex string
-console.log(now.toByteArray()); // TAI64 label as byte array
+// Or use static factory methods defined in TAI64 class
+const moonLanding = TAI64.fromUnixTimestamp(
+  Math.floor(Date.parse("July 20, 69 00:20:18 UTC") / 1000)
+);
+
+console.log("Current timestamp: %s", now.toHexString());
+console.log("🚀🌝 Moon Landing timestamp: %s", moonLanding.toHexString());
 ```
 
 ## Further readings
