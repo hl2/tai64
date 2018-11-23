@@ -63,6 +63,18 @@ class TAI64 {
     this.label = label;
   }
 
+  isAfter(other: TAI64) {
+    return this.label.gt(other.label);
+  }
+
+  isBefore(other: TAI64) {
+    return this.label.lt(other.label);
+  }
+
+  isEqual(other: TAI64) {
+    return this.label.eq(other.label);
+  }
+
   toHexString() {
     return this.label.toString(16);
   }

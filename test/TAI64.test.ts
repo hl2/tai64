@@ -61,8 +61,77 @@ describe("TAI64", () => {
     });
   });
 
+  describe("isAfter", () => {
+    it("should return true if TAI64 is after given TAI64", () => {
+      const now = TAI64.now();
+      const isAfter = now.isAfter(TAI64.EPOCH);
+
+      expect(isAfter).to.be.eql(true);
+    });
+
+    it("should return false if TAI64 is before given TAI64", () => {
+      const now = TAI64.now();
+      const isAfter = TAI64.EPOCH.isAfter(now);
+
+      expect(isAfter).to.be.eql(false);
+    });
+
+    it("should return false if TAI64 is equal to given TAI64", () => {
+      const now = TAI64.now();
+      const isAfter = now.isAfter(now);
+
+      expect(isAfter).to.be.eql(false);
+    });
+  });
+
+  describe("isBefore", () => {
+    it("should return true if TAI64 is before given TAI64", () => {
+      const now = TAI64.now();
+      const isBefore = TAI64.EPOCH.isBefore(now);
+
+      expect(isBefore).to.be.eql(true);
+    });
+
+    it("should return false if TAI64 is after given TAI64", () => {
+      const now = TAI64.now();
+      const isBefore = now.isBefore(TAI64.EPOCH);
+
+      expect(isBefore).to.be.eql(false);
+    });
+
+    it("should return false if TAI64 is equal to given TAI64", () => {
+      const now = TAI64.now();
+      const isBefore = now.isBefore(now);
+
+      expect(isBefore).to.be.eql(false);
+    });
+  });
+
+  describe("isEqual", () => {
+    it("should return true if TAI64 is equal to given TAI64", () => {
+      const now = TAI64.now();
+      const isEqual = now.isEqual(now);
+
+      expect(isEqual).to.be.eql(true);
+    });
+
+    it("should return false if TAI64 is after given TAI64", () => {
+      const now = TAI64.now();
+      const isEqual = now.isEqual(TAI64.EPOCH);
+
+      expect(isEqual).to.be.eql(false);
+    });
+
+    it("should return false if TAI64 is before given TAI64", () => {
+      const now = TAI64.now();
+      const isEqual = TAI64.EPOCH.isEqual(now);
+
+      expect(isEqual).to.be.eql(false);
+    });
+  });
+
   describe("toHexString", () => {
-    it("should return the hexadecimal string representation of current TAI64", () => {
+    it("should return the hexadecimal string representation", () => {
       const tai64EpochAsHexString = "4000000000000000";
 
       expect(TAI64.EPOCH.toHexString()).to.be.eql(tai64EpochAsHexString);
@@ -70,7 +139,7 @@ describe("TAI64", () => {
   });
 
   describe("toByteArray", () => {
-    it("should return the byte array representation of current TAI64", () => {
+    it("should return the byte array representation", () => {
       const tai64EpochAsByteArray = [64, 0, 0, 0, 0, 0, 0, 0];
 
       expect(TAI64.EPOCH.toByteArray()).to.be.eql(tai64EpochAsByteArray);
