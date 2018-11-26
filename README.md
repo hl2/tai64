@@ -32,6 +32,17 @@ console.log("Current timestamp: %s", now.toHexString());
 console.log("🚀🌝 Moon Landing timestamp: %s", moonLanding.toHexString());
 ```
 
+## Implementation details
+
+### Immutability
+
+A TAI64 instance is immutable by design and can’t be modified after it’s created.
+
+### Long dependency
+
+In ECMAScript, a `Number` is represented as a [double-precision floating-point format numbers](http://en.wikipedia.org/wiki/Double_precision_floating-point_format) and the largest integer value that can be safely
+represented is `2^53-1`. A TAI64 is an integer between `0` and `2^64` referring to a particular second of real time. For that reason,this project use [long.js](https://github.com/dcodeIO/long.js) as a dependency. In future versions, we will investigate if we have to get rid of this dependency and if [BigInt](https://github.com/tc39/proposal-bigint) proposal can be used.
+
 ## Further readings
 
 - [UTC, TAI, and UNIX time](https://cr.yp.to/proto/utctai.html)
