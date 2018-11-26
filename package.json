@@ -60,7 +60,7 @@
     "trailingComma": "es5"
   },
   "lint-staged": {
-    "*": [
+    "*.{ts,json,md}": [
       "prettier --write",
       "git add"
     ]
