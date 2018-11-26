@@ -11,3 +11,5 @@ npm_debug*.log
 
 # Others
 lib/
+.nyc_output/
+coverage/
