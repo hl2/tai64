@@ -63,6 +63,12 @@ const leapSeconds: ReadonlyArray<[number, number]> = [
   [3072000, 10],
 ];
 
+/**
+ * Returns the number of leap seconds for the given UNIX timestamp.
+ *
+ * @param timestamp - The UNIX timestamp in seconds
+ * @returns The number of leap seconds
+ */
 export const getLeapSeconds = (timestamp: number) => {
   const leapSecond = leapSeconds.find(
     ([leapSecondTimestamp]) => timestamp >= leapSecondTimestamp

@@ -26,14 +26,26 @@ import { LabelRangeError } from "./LabelRangeError";
 import { getLeapSeconds } from "./LeapSeconds";
 
 class TAI64 {
+  /**
+   * Instance of TAI64 representing the 1970 TAI EPOCH.
+   */
   static readonly EPOCH = new TAI64(Long.MAX_VALUE.shiftRight(1).add(1));
 
+  /**
+   * @returns An instance of TAI64
+   */
   static now() {
     const unixTimestamp = Math.floor(Date.now() / 1000);
 
     return TAI64.fromUnixTimestamp(unixTimestamp);
   }
 
+  /**
+   * Returns a TAI64 corresponding to the given UNIX timestamp.
+   *
+   * @param unixTimestamp - The UNIX timestamp in seconds
+   * @returns An instance of TAI64
+   */
   static fromUnixTimestamp(unixTimestamp: number) {
     const leapSeconds = getLeapSeconds(unixTimestamp);
     const label = TAI64.EPOCH.label.add(unixTimestamp + leapSeconds);
@@ -41,12 +53,26 @@ class TAI64 {
     return new TAI64(label);
   }
 
+  /**
+   * Returns a TAI64 corresponding to the given hexadecimal string representing
+   * a TAI64.
+   *
+   * @param hexString - The hexadecimal string
+   * @returns An instance of TAI64
+   */
   static fromHexString(hexString: string) {
     const label = Long.fromString(hexString, false, 16);
 
     return new TAI64(label);
   }
 
+  /**
+   * Returns a TAI64 corresponding to the given byte array representing
+   * a TAI64.
+   *
+   * @param bytes - The byte array
+   * @returns An instance of TAI64
+   */
   static fromByteArray(bytes: number[]) {
     const label = Long.fromBytes(bytes, false);
 
@@ -55,6 +81,12 @@ class TAI64 {
 
   private readonly label: Long;
 
+  /**
+   * Constructs an instance of TAI64.
+   *
+   * @param label - The TAI64 label
+   * @returns An instance of TAI64
+   */
   private constructor(label: Long) {
     if (label.lt(Long.ZERO) || label.gte(Long.MAX_VALUE)) {
       throw new LabelRangeError();
@@ -63,27 +95,59 @@ class TAI64 {
     this.label = label;
   }
 
+  /**
+   * Returns if this TAI64 is after the given TAI64.
+   *
+   * @param other - The other TAI64 to compare
+   * @returns `true` if this TAI64 is after the given TAI64, `false` otherwise
+   */
   isAfter(other: TAI64) {
     return this.label.gt(other.label);
   }
 
+  /**
+   * Returns if this TAI64 is before the given TAI64.
+   *
+   * @param other - The other TAI64 to compare
+   * @returns `true` if this TAI64 is before the given TAI64, `false` otherwise
+   */
   isBefore(other: TAI64) {
     return this.label.lt(other.label);
   }
 
+  /**
+   * Returns if this TAI64 is equal to the given TAI64.
+   *
+   * @param other - The other TAI64 to compare
+   * @returns `true` if this TAI64 is equal to the given TAI64, `false` otherwise
+   */
   isEqual(other: TAI64) {
     return this.label.eq(other.label);
   }
 
+  /**
+   * Returns an hexadecimal string representation of this TAI64.
+   */
   toHexString() {
     return this.label.toString(16);
   }
 
+  /**
+   * Returns a byte array representation of this TAI64.
+   */
   toByteArray() {
     return this.label.toBytes();
   }
 }
 
+/**
+ * Factory returning an instance of TAI64. This factory calls the factory methods defined in the TAI64 class
+ * in function of the given value type. If no value is provided an instance representing the current TAI64
+ * timestamp is returned
+ *
+ * @param value - The value to construct a TAI64 instance from
+ * @returns An instance of TAI64
+ */
 const tai64 = (value?: string | number | number[]) => {
   if (typeof value === "string") {
     return TAI64.fromHexString(value);
