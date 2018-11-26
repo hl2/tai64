@@ -17,7 +17,7 @@
     "lint:test": "tslint -p test/tsconfig.json",
     "pretty": "prettier --write '{src,test}/**/*.{ts,json}' '*.{md,json}'",
     "build": "tsc",
-    "test": "nyc mocha -r ts-node/register 'test/**/*.test.ts'",
+    "test": "NODE_ENV=test nyc mocha -r ts-node/register 'test/**/*.test.ts'",
     "prebuild": "npm-run-all clean lint:src",
     "pretest": "npm-run-all build lint:test"
   },
