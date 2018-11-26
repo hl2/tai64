@@ -23,7 +23,7 @@ import { tai64, TAI64 } from "tai64";
 
 const now = tai64(); // You can use the tai64 method to get a TAI64 instance
 
-// Or use static factory methods defined in TAI64 class
+// Or use static factory methods defined in the TAI64 class
 const moonLanding = TAI64.fromUnixTimestamp(
   Math.floor(Date.parse("July 20, 69 00:20:18 UTC") / 1000)
 );
