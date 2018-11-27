@@ -1,7 +1,10 @@
 src/
 test/
+.nyc_output/
+coverage/
 tslint.json
 tsconfig.json
 .editorconfig
 .nvmrc
 .travis.yml
+*.tgz

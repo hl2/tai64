@@ -13,3 +13,4 @@ npm_debug*.log
 lib/
 .nyc_output/
 coverage/
+*.tgz
