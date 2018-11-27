@@ -50,6 +50,15 @@ represented is `2^53-1`. A TAI64 is an integer between `0` and `2^64` referring 
 - [International Atomic Time](https://en.wikipedia.org/wiki/International_Atomic_Time)
 - [Leap second](https://en.wikipedia.org/wiki/Leap_second)
 
+## Contributing
+
+Contributions are welcomed 👍
+
+Use the links below to request a feature, fill a bug or contribute some code!
+
+- Issues: https://github.com/hl2/tai64/issues
+- Pull requests: https://github.com/hl2/tai64/pulls
+
 ## License
 
 TAI64 is [MIT Licensed](./LICENSE.md).
