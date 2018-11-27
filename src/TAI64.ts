@@ -22,7 +22,6 @@
  */
 
 import Long from "long";
-import { LabelRangeError } from "./LabelRangeError";
 import { getLeapSeconds } from "./LeapSeconds";
 
 class TAI64 {
@@ -79,20 +78,19 @@ class TAI64 {
     return new TAI64(label);
   }
 
-  private readonly label: Long;
-
   /**
    * Constructs an instance of TAI64.
    *
-   * @param label - The TAI64 label
+   * @param label - The TAI64 label between 0 and 2^63-1, inclusive
    * @returns An instance of TAI64
+   * @throws RangeError if given label is not between 0 and 2^63-1, inclusive
    */
-  private constructor(label: Long) {
+  private constructor(private readonly label: Long) {
     if (label.lt(Long.ZERO) || label.gte(Long.MAX_VALUE)) {
-      throw new LabelRangeError();
+      throw new RangeError(
+        "Label must be an integer between 0 and 2^63-1, inclusive"
+      );
     }
-
-    this.label = label;
   }
 
   /**

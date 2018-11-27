@@ -40,6 +40,20 @@ describe("TAI64", () => {
 
       expect(tai64Epoch).to.be.eql(TAI64.EPOCH);
     });
+
+    it("should throw a RangeError if value is greater than 2^63-1", () => {
+      const hexString = "7fffffffffffffff"; // 2^63
+      const fromHexString = () => TAI64.fromHexString(hexString);
+
+      expect(fromHexString).to.throw(RangeError);
+    });
+
+    it("should throw a RangeError if value is lower than 0", () => {
+      const hexString = "ffffffffffffffff"; // 0
+      const fromHexString = () => TAI64.fromHexString(hexString);
+
+      expect(fromHexString).to.throw(RangeError);
+    });
   });
 
   describe("fromUnixTimestamp", () => {
@@ -58,6 +72,20 @@ describe("TAI64", () => {
       const tai64Epoch = TAI64.fromByteArray(tai64EpochAsByteArray);
 
       expect(tai64Epoch).to.be.eql(TAI64.EPOCH);
+    });
+
+    it("should throw a RangeError if value is greater than 2^63-1", () => {
+      const byteArray = [127, 255, 255, 255, 255, 255, 255, 255]; // 2^63
+      const fromByteArray = () => TAI64.fromByteArray(byteArray);
+
+      expect(fromByteArray).to.throw(RangeError);
+    });
+
+    it("should throw a RangeError if value is lower than 0", () => {
+      const byteArray = [255, 255, 255, 255, 255, 255, 255, 255]; // 0
+      const fromByteArray = () => TAI64.fromByteArray(byteArray);
+
+      expect(fromByteArray).to.throw(RangeError);
     });
   });
 
