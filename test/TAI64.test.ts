@@ -158,24 +158,24 @@ describe("TAI64", () => {
     });
   });
 
-  describe("compare", () => {
+  describe("compareTo", () => {
     it("should return -1 if TAI64 is before the given TAI64", () => {
       const now = TAI64.now();
-      const result = TAI64.EPOCH.compare(now);
+      const result = TAI64.EPOCH.compareTo(now);
 
       expect(result).to.be.eql(-1);
     });
 
     it("should return 1 if TAI64 is after the given TAI64", () => {
       const now = TAI64.now();
-      const result = now.compare(TAI64.EPOCH);
+      const result = now.compareTo(TAI64.EPOCH);
 
       expect(result).to.be.eql(1);
     });
 
     it("should return 0 if TAI64 is equal to the given TAI64", () => {
       const now = TAI64.now();
-      const result = now.compare(now);
+      const result = now.compareTo(now);
 
       expect(result).to.be.eql(0);
     });
