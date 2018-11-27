@@ -100,7 +100,7 @@ class TAI64 {
    * @returns `true` if this TAI64 is after the given TAI64, `false` otherwise
    */
   isAfter(other: TAI64) {
-    return this.label.gt(other.label);
+    return this.compare(other) > 0;
   }
 
   /**
@@ -110,7 +110,7 @@ class TAI64 {
    * @returns `true` if this TAI64 is before the given TAI64, `false` otherwise
    */
   isBefore(other: TAI64) {
-    return this.label.lt(other.label);
+    return this.compare(other) < 0;
   }
 
   /**
@@ -120,7 +120,20 @@ class TAI64 {
    * @returns `true` if this TAI64 is equal to the given TAI64, `false` otherwise
    */
   isEqual(other: TAI64) {
-    return this.label.eq(other.label);
+    return this.compare(other) === 0;
+  }
+
+  /**
+   * Compares this TAI64 is equal to the given TAI64.
+   *
+   * @param other - The other TAI64 to compare
+   * @returns
+   * - `-1` if this TAI64 is before the given TAI64
+   * - `1` if this TAI64 is before the given TAI64
+   * - `0` if this TAI64 is equal to the given TAI64
+   */
+  compare(other: TAI64) {
+    return this.label.compare(other.label);
   }
 
   /**
