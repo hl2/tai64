@@ -41,7 +41,7 @@ A TAI64 instance is immutable by design and can’t be modified after it’s cre
 In ECMAScript, a `Number` is represented as a [double-precision floating-point format number](http://en.wikipedia.org/wiki/Double_precision_floating-point_format) and the largest integer value that can be safely
 represented is `2^53-1`. A TAI64 is an integer between `0` and `2^64` referring to a particular second of real time. For that reason, this project uses [long.js](https://github.com/dcodeIO/long.js) as a dependency. In future versions, we will investigate if we have to get rid of this dependency and if the [BigInt](https://github.com/tc39/proposal-bigint) proposal can be used.
 
-## Further readings
+## Further reading
 
 - [UTC, TAI, and UNIX time](https://cr.yp.to/proto/utctai.html)
 - [What’s this whole TAI64 thing about?](http://dyscour.se/post/12679668746/using-tai64-for-logging)
