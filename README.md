@@ -38,8 +38,8 @@ A TAI64 instance is immutable by design and can’t be modified after it’s cre
 
 ### Long dependency
 
-In ECMAScript, a `Number` is represented as a [double-precision floating-point format numbers](http://en.wikipedia.org/wiki/Double_precision_floating-point_format) and the largest integer value that can be safely
-represented is `2^53-1`. A TAI64 is an integer between `0` and `2^64` referring to a particular second of real time. For that reason,this project use [long.js](https://github.com/dcodeIO/long.js) as a dependency. In future versions, we will investigate if we have to get rid of this dependency and if [BigInt](https://github.com/tc39/proposal-bigint) proposal can be used.
+In ECMAScript, a `Number` is represented as a [double-precision floating-point format number](http://en.wikipedia.org/wiki/Double_precision_floating-point_format) and the largest integer value that can be safely
+represented is `2^53-1`. A TAI64 is an integer between `0` and `2^64` referring to a particular second of real time. For that reason, this project uses [long.js](https://github.com/dcodeIO/long.js) as a dependency. In future versions, we will investigate if we have to get rid of this dependency and if the [BigInt](https://github.com/tc39/proposal-bigint) proposal can be used.
 
 ## Further readings
 
@@ -50,9 +50,9 @@ represented is `2^53-1`. A TAI64 is an integer between `0` and `2^64` referring 
 
 ## Contributing
 
-Contributions are welcomed 👍
+Contributions are welcome 👍
 
-Use the links below to request a feature, fill a bug or contribute some code!
+Use the links below to request a feature, file a bug or contribute some code!
 
 - Issues: https://github.com/hl2/tai64/issues
 - Pull requests: https://github.com/hl2/tai64/pulls
