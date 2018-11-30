@@ -181,6 +181,14 @@ describe("TAI64", () => {
     });
   });
 
+  describe("toByteArray", () => {
+    it("should return the byte array representation", () => {
+      const tai64EpochAsByteArray = [64, 0, 0, 0, 0, 0, 0, 0];
+
+      expect(TAI64.EPOCH.toByteArray()).to.be.eql(tai64EpochAsByteArray);
+    });
+  });
+
   describe("toHexString", () => {
     it("should return the hexadecimal string representation", () => {
       const tai64EpochAsHexString = "4000000000000000";
@@ -189,11 +197,11 @@ describe("TAI64", () => {
     });
   });
 
-  describe("toByteArray", () => {
-    it("should return the byte array representation", () => {
-      const tai64EpochAsByteArray = [64, 0, 0, 0, 0, 0, 0, 0];
+  describe("toString", () => {
+    it("should return the hexadecimal string representation", () => {
+      const tai64EpochAsHexString = "4000000000000000";
 
-      expect(TAI64.EPOCH.toByteArray()).to.be.eql(tai64EpochAsByteArray);
+      expect(TAI64.EPOCH.toString()).to.be.eql(tai64EpochAsHexString);
     });
   });
 });

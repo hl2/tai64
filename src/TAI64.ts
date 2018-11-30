@@ -137,17 +137,25 @@ class TAI64 {
   }
 
   /**
-   * Returns an hexadecimal string representation of this TAI64.
-   */
-  toHexString() {
-    return this.label.toString(16);
-  }
-
-  /**
    * Returns a byte array representation of this TAI64.
    */
   toByteArray() {
     return this.label.toBytes();
+  }
+
+  /**
+   * Returns an hexadecimal string representation of this TAI64. This method
+   * is an alias for {@link TAI64.toString} method.
+   */
+  toHexString() {
+    return this.toString();
+  }
+
+  /**
+   * Returns an hexadecimal string representation of this TAI64.
+   */
+  toString() {
+    return this.label.toString(16);
   }
 }
 
