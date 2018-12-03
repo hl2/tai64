@@ -40,17 +40,33 @@ describe("TAI64", () => {
 
       expect(tai64Epoch).to.be.eql(TAI64.EPOCH);
     });
+  });
+
+  describe("fromString", () => {
+    it("should return the TAI64 corresponding to the given hexadecimal string if no radix is specified", () => {
+      const tai64EpochAsHexString = "4000000000000000";
+      const tai64Epoch = TAI64.fromString(tai64EpochAsHexString);
+
+      expect(tai64Epoch).to.be.eql(TAI64.EPOCH);
+    });
+
+    it("should return the TAI64 corresponding to the given string with the given radix", () => {
+      const tai64EpochAsDecimalString = "4611686018427387904";
+      const tai64Epoch = TAI64.fromString(tai64EpochAsDecimalString, 10);
+
+      expect(tai64Epoch).to.be.eql(TAI64.EPOCH);
+    });
 
     it("should throw a RangeError if value is greater than 2^63-1", () => {
       const hexString = "7fffffffffffffff"; // 2^63
-      const fromHexString = () => TAI64.fromHexString(hexString);
+      const fromHexString = () => TAI64.fromString(hexString);
 
       expect(fromHexString).to.throw(RangeError);
     });
 
     it("should throw a RangeError if value is lower than 0", () => {
       const hexString = "ffffffffffffffff"; // 0
-      const fromHexString = () => TAI64.fromHexString(hexString);
+      const fromHexString = () => TAI64.fromString(hexString);
 
       expect(fromHexString).to.throw(RangeError);
     });

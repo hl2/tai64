@@ -54,13 +54,24 @@ class TAI64 {
 
   /**
    * Returns a TAI64 corresponding to the given hexadecimal string representing
-   * a TAI64.
+   * a TAI64 label. This method is an alias for {@link TAI64.fromString} method.
    *
    * @param hexString - The hexadecimal string
    * @returns An instance of TAI64
    */
   static fromHexString(hexString: string) {
-    const label = Long.fromString(hexString, false, 16);
+    return TAI64.fromString(hexString);
+  }
+
+  /**
+   * Returns a TAI64 corresponding to the given string representing a TAI64 label in the given radix.
+   *
+   * @param str - The string
+   * @param radix - An integer that represents the radix (the base in mathematical numeral systems), defaults to `16`
+   * @returns An instance of TAI64
+   */
+  static fromString(str: string, radix: number = 16) {
+    const label = Long.fromString(str, false, radix);
 
     return new TAI64(label);
   }
@@ -154,7 +165,7 @@ class TAI64 {
   /**
    * Returns a string representation of this TAI64 label.
    *
-   * @param radix - An integer specifying the base to use for representation, defaults to `16`
+   * @param radix - An integer that represents the radix (the base in mathematical numeral systems), defaults to `16`
    */
   toString(radix: number = 16) {
     return this.label.toString(radix);
