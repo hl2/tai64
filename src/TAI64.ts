@@ -144,7 +144,7 @@ class TAI64 {
   }
 
   /**
-   * Returns an hexadecimal string representation of this TAI64. This method
+   * Returns an hexadecimal string representation of this TAI64 label. This method
    * is an alias for {@link TAI64.toString} method.
    */
   toHexString() {
@@ -152,10 +152,12 @@ class TAI64 {
   }
 
   /**
-   * Returns an hexadecimal string representation of this TAI64.
+   * Returns a string representation of this TAI64 label.
+   *
+   * @param radix - An integer specifying the base to use for representation, defaults to `16`
    */
-  toString() {
-    return this.label.toString(16);
+  toString(radix: number = 16) {
+    return this.label.toString(radix);
   }
 }
 

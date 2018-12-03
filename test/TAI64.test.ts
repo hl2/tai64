@@ -182,7 +182,7 @@ describe("TAI64", () => {
   });
 
   describe("toByteArray", () => {
-    it("should return the byte array representation", () => {
+    it("should return TAI64 label as byte array", () => {
       const tai64EpochAsByteArray = [64, 0, 0, 0, 0, 0, 0, 0];
 
       expect(TAI64.EPOCH.toByteArray()).to.be.eql(tai64EpochAsByteArray);
@@ -190,7 +190,7 @@ describe("TAI64", () => {
   });
 
   describe("toHexString", () => {
-    it("should return the hexadecimal string representation", () => {
+    it("should return TAI64 label as hexadecimal string", () => {
       const tai64EpochAsHexString = "4000000000000000";
 
       expect(TAI64.EPOCH.toHexString()).to.be.eql(tai64EpochAsHexString);
@@ -198,10 +198,16 @@ describe("TAI64", () => {
   });
 
   describe("toString", () => {
-    it("should return the hexadecimal string representation", () => {
+    it("should return TAI64 label as hexadecimal string if no radix is provided", () => {
       const tai64EpochAsHexString = "4000000000000000";
 
       expect(TAI64.EPOCH.toString()).to.be.eql(tai64EpochAsHexString);
+    });
+
+    it("should return TAI64 label as string in the given radix", () => {
+      const tai64EpochAsDecimalString = "4611686018427387904";
+
+      expect(TAI64.EPOCH.toString(10)).to.be.eql(tai64EpochAsDecimalString);
     });
   });
 });
