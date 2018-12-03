@@ -36,18 +36,18 @@ class TAI64 {
   static now() {
     const unixTimestamp = Math.floor(Date.now() / 1000);
 
-    return TAI64.fromUnixTimestamp(unixTimestamp);
+    return TAI64.fromUnix(unixTimestamp);
   }
 
   /**
    * Returns a TAI64 corresponding to the given UNIX timestamp.
    *
-   * @param unixTimestamp - The UNIX timestamp in seconds
+   * @param timestamp - The UNIX timestamp in seconds
    * @returns An instance of TAI64
    */
-  static fromUnixTimestamp(unixTimestamp: number) {
-    const leapSeconds = getLeapSeconds(unixTimestamp);
-    const label = TAI64.EPOCH.label.add(unixTimestamp + leapSeconds);
+  static fromUnix(timestamp: number) {
+    const leapSeconds = getLeapSeconds(timestamp);
+    const label = TAI64.EPOCH.label.add(timestamp + leapSeconds);
 
     return new TAI64(label);
   }
@@ -171,7 +171,7 @@ const tai64 = (value?: string | number | number[]) => {
   if (typeof value === "string") {
     return TAI64.fromHexString(value);
   } else if (typeof value === "number") {
-    return TAI64.fromUnixTimestamp(value);
+    return TAI64.fromUnix(value);
   } else if (Array.isArray(value)) {
     return TAI64.fromByteArray(value);
   }

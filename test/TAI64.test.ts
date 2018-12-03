@@ -56,11 +56,11 @@ describe("TAI64", () => {
     });
   });
 
-  describe("fromUnixTimestamp", () => {
-    it("should return the TAI64 corresponding to the given unix timestamp", () => {
+  describe("fromUnix", () => {
+    it("should return the TAI64 corresponding to the given UNIX timestamp", () => {
       const tai64EpochAsDate = new Date("01 Jan 1970 00:00:00 UTC");
       const tai64EpochAsUnixTimestamp = tai64EpochAsDate.getTime();
-      const tai64Epoch = TAI64.fromUnixTimestamp(tai64EpochAsUnixTimestamp);
+      const tai64Epoch = TAI64.fromUnix(tai64EpochAsUnixTimestamp);
 
       expect(tai64Epoch).to.be.eql(TAI64.EPOCH);
     });
