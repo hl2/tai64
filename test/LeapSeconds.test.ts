@@ -22,50 +22,84 @@
  */
 
 import { expect } from "chai";
-import { getLeapSeconds } from "../src/LeapSeconds";
+import { addLeapSeconds, removeLeapSeconds } from "../src/LeapSeconds";
 
 describe("LeapSeconds", () => {
   const getTimeInSeconds = (date: Date) => Math.floor(date.getTime() / 1000);
 
-  describe("getLeapSeconds", () => {
-    it("should return no leap seconds if timestamp is before 01 Jan 1972, 00:00 UTC", () => {
+  describe("addLeapSeconds", () => {
+    it("should add no leap seconds if timestamp is before 01 Jan 1972, 00:00 UTC", () => {
       const moonLanding = new Date("20 July 1969 00:20:18 UTC");
       const timestamp = getTimeInSeconds(moonLanding);
-      const leapSeconds = getLeapSeconds(timestamp);
+      const timestampWithLeapSeconds = addLeapSeconds(timestamp);
 
-      expect(leapSeconds).to.be.eql(0);
+      expect(timestampWithLeapSeconds).to.be.eql(timestamp);
     });
 
-    it("should return 23 leap seconds if timestamp is before 01 Jan 1988, 00:00 UTC", () => {
+    it("should add 23 leap seconds if timestamp is before 01 Jan 1988, 00:00 UTC", () => {
       const date = new Date("31 Dec 1987, 23:59 UTC");
       const timestamp = getTimeInSeconds(date);
-      const leapSeconds = getLeapSeconds(timestamp);
+      const timestampWithLeapSeconds = addLeapSeconds(timestamp);
 
-      expect(leapSeconds).to.be.eql(23);
+      expect(timestampWithLeapSeconds).to.be.eql(timestamp + 23);
     });
 
-    it("should return 24 leap seconds if timestamp is equal to 01 Jan 1988, 00:00 UTC", () => {
+    it("should add 24 leap seconds if timestamp is equal to 01 Jan 1988, 00:00 UTC", () => {
       const date = new Date("01 Jan 1988, 00:00 UTC");
       const timestamp = getTimeInSeconds(date);
-      const leapSeconds = getLeapSeconds(timestamp);
+      const timestampWithLeapSeconds = addLeapSeconds(timestamp);
 
-      expect(leapSeconds).to.be.eql(24);
+      expect(timestampWithLeapSeconds).to.be.eql(timestamp + 24);
     });
 
-    it("should return 24 leap seconds if timestamp is after 01 Jan 1988, 00:00 UTC", () => {
+    it("should add 24 leap seconds if timestamp is after 01 Jan 1988, 00:00 UTC", () => {
       const date = new Date("01 Jan 1988, 00:01 UTC");
       const timestamp = getTimeInSeconds(date);
-      const leapSeconds = getLeapSeconds(timestamp);
+      const timestampWithLeapSeconds = addLeapSeconds(timestamp);
 
-      expect(leapSeconds).to.be.eql(24);
+      expect(timestampWithLeapSeconds).to.be.eql(timestamp + 24);
     });
 
-    it("should return 37 leap seconds if timestamp is after 01 Jan 2017, 00:00 UTC", () => {
+    it("should add 37 leap seconds if timestamp is after 01 Jan 2017, 00:00 UTC", () => {
       const date = new Date("01 Jan 2017, 00:00 UTC");
       const timestamp = getTimeInSeconds(date);
-      const leapSeconds = getLeapSeconds(timestamp);
+      const timestampWithLeapSeconds = addLeapSeconds(timestamp);
 
-      expect(leapSeconds).to.be.eql(37);
+      expect(timestampWithLeapSeconds).to.be.eql(timestamp + 37);
+    });
+  });
+
+  describe("removeLeapSeconds", () => {
+    it("should remove no leap seconds if timestamp with leap seconds is before 01 Jan 1972, 00:00 UTC", () => {
+      const moonLanding = new Date("20 July 1969 00:20:18 UTC");
+      const timestampWithLeapSeconds = getTimeInSeconds(moonLanding);
+      const timestamp = removeLeapSeconds(timestampWithLeapSeconds);
+
+      expect(timestamp).to.be.eql(timestampWithLeapSeconds);
+    });
+
+    it("should remove no leap seconds if timestamp with leap seconds is equal to 01 Jan 1972, 00:00 UTC", () => {
+      const date = new Date("01 Jan 1972 00:00:00 UTC");
+      const timestampWithLeapSeconds = getTimeInSeconds(date);
+      const timestamp = removeLeapSeconds(timestampWithLeapSeconds);
+
+      expect(timestamp).to.be.eql(timestampWithLeapSeconds);
+    });
+
+    it("should remove no leap seconds if timestamp with leap seconds is equal to 01 Jan 1972, 00:09 UTC", () => {
+      const date = new Date("01 Jan 1972 00:00:09 UTC");
+      const timestampWithLeapSeconds = getTimeInSeconds(date);
+      const timestamp = removeLeapSeconds(timestampWithLeapSeconds);
+
+      expect(timestamp).to.be.eql(timestampWithLeapSeconds);
+    });
+
+    it("should remove 10 leap seconds if timestamp with leap seconds is equal to 01 Jan 1972, 00:10 UTC", () => {
+      const date = new Date("01 Jan 1972 00:00:10 UTC");
+      const timestampWithLeapSeconds = getTimeInSeconds(date);
+      const timestamp = removeLeapSeconds(timestampWithLeapSeconds);
+
+      expect(timestamp).to.be.eql(timestampWithLeapSeconds - 10);
     });
   });
 });

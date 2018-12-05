@@ -226,4 +226,12 @@ describe("TAI64", () => {
       expect(TAI64.EPOCH.toString(10)).to.be.eql(tai64EpochAsDecimalString);
     });
   });
+
+  describe("toUnix", () => {
+    it("should return corresponding UNIX timestamp", () => {
+      const unixEpoch = Date.parse("01 Jan 1970 00:00:00 UTC");
+
+      expect(TAI64.EPOCH.toUnix()).to.be.eql(unixEpoch);
+    });
+  });
 });

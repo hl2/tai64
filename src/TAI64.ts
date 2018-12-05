@@ -22,7 +22,7 @@
  */
 
 import Long from "long";
-import { getLeapSeconds } from "./LeapSeconds";
+import { addLeapSeconds, removeLeapSeconds } from "./LeapSeconds";
 
 class TAI64 {
   /**
@@ -46,8 +46,8 @@ class TAI64 {
    * @returns An instance of TAI64
    */
   static fromUnix(timestamp: number) {
-    const leapSeconds = getLeapSeconds(timestamp);
-    const label = TAI64.EPOCH.label.add(timestamp + leapSeconds);
+    const seconds = addLeapSeconds(timestamp);
+    const label = TAI64.EPOCH.label.add(seconds);
 
     return new TAI64(label);
   }
@@ -169,6 +169,15 @@ class TAI64 {
    */
   toString(radix: number = 16) {
     return this.label.toString(radix);
+  }
+
+  /**
+   * Returns a UNIX timestamp corresponding to this TAI64 label.
+   */
+  toUnix() {
+    const elapsedSeconds = this.label.sub(TAI64.EPOCH.label);
+
+    return removeLeapSeconds(elapsedSeconds.toNumber());
   }
 }
 

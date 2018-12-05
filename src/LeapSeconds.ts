@@ -32,7 +32,7 @@
  * The number 2208988800 represents the NTP timestamp for the UNIX epoch, which is 1 January 1970, 00:00:00, computed with
  * the following formula (70 * 365 + 17) * 86400.
  */
-const leapSeconds: ReadonlyArray<[number, number]> = [
+const leapSeconds = [
   [1483228800, 37],
   [1435708800, 36],
   [1341100800, 35],
@@ -60,18 +60,31 @@ const leapSeconds: ReadonlyArray<[number, number]> = [
   [126230400, 13],
   [94694400, 12],
   [78796800, 11],
-  [3072000, 10],
+  [63072000, 10],
 ];
 
 /**
- * Returns the number of leap seconds for the given UNIX timestamp.
+ * Adds leap seconds to the given UNIX timestamp.
  *
- * @param timestamp - The UNIX timestamp in seconds
- * @returns The number of leap seconds
+ * @param timestamp - The UNIX timestamp
+ * @returns a timestamp with leap seconds added
  */
-export const getLeapSeconds = (timestamp: number) => {
-  const leapSecond = leapSeconds.find(
-    ([leapSecondTimestamp]) => timestamp >= leapSecondTimestamp
-  );
-  return !leapSecond ? 0 : leapSecond[1];
+const addLeapSeconds = (timestamp: number) => {
+  const leapSecond = leapSeconds.find(([ts]) => timestamp >= ts);
+  return timestamp + (leapSecond ? leapSecond[1] : 0);
 };
+
+/**
+ * Removes leap seconds from the given timestamp with leap seconds.
+ *
+ * @param timestamp - The timestamp with leap seconds
+ * @returns the corresponding UNIX timestamp
+ */
+const removeLeapSeconds = (timestamp: number) => {
+  const leapSecond = leapSeconds.find(
+    ([ts, offset]) => timestamp - offset >= ts
+  );
+  return timestamp - (leapSecond ? leapSecond[1] : 0);
+};
+
+export { addLeapSeconds, removeLeapSeconds };
