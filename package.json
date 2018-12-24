@@ -1,6 +1,6 @@
 {
   "name": "tai64",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0",
   "description": "TypeScript implementation of TAI64 timestamps for Node.js and the browser",
   "keywords": [
     "tai",
