@@ -28,10 +28,12 @@
     "lint:test": "tslint -p test/tsconfig.json",
     "format": "prettier --write '{src,test}/**/*.{ts,json}' '*.{md,json}'",
     "build": "tsc",
-    "test": "NODE_ENV=test nyc mocha -r ts-node/register 'test/**/*.test.ts'",
+    "test": "nyc mocha 'test/**/*.test.ts'",
+    "test:ci": "nyc --reporter=lcov mocha 'test/**/*.test.ts' && cat coverage/lcov.info | coveralls",
     "release": "npm version",
     "prebuild": "npm-run-all clean lint:src",
     "pretest": "npm-run-all build lint:test",
+    "pretest:ci": "npm-run-all build lint:test",
     "prerelease": "npm-run-all test"
   },
   "dependencies": {
@@ -43,6 +45,7 @@
     "@types/chai": "4.1.7",
     "@types/mocha": "5.2.5",
     "chai": "4.2.0",
+    "coveralls": "3.0.2",
     "husky": "1.2.1",
     "lint-staged": "8.1.0",
     "mocha": "5.2.0",
@@ -66,7 +69,13 @@
       ".ts"
     ],
     "include": [
-      "src/**"
+      "src"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "require": [
+      "ts-node/register"
     ]
   },
   "prettier": {
