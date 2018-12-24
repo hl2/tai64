@@ -1,4 +1,4 @@
-# TAI64 &middot; [![Build Status](https://travis-ci.com/hl2/tai64.svg?token=tSMJcyr4W5f93JMvoe6S&branch=master)](https://travis-ci.com/hl2/tai64)
+# TAI64 &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/kevinpollet/typescript-node-module-starter/blob/master/LICENSE.md) [![Build Status](https://travis-ci.com/hl2/tai64.svg?token=tSMJcyr4W5f93JMvoe6S&branch=master)](https://travis-ci.com/hl2/tai64)
 
 ⚛️ TypeScript implementation of TAI64 timestamps for [Node.js](https://nodejs.org/en/) and the browser.
 
