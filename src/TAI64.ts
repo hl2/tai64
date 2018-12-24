@@ -181,24 +181,4 @@ class TAI64 {
   }
 }
 
-/**
- * Factory returning an instance of TAI64. This factory calls the factory methods defined in the TAI64 class
- * in function of the given value type. If no value is provided an instance representing the current TAI64
- * timestamp is returned
- *
- * @param value - The value to construct a TAI64 instance from
- * @returns An instance of TAI64
- */
-const tai64 = (value?: string | number | number[]) => {
-  if (typeof value === "string") {
-    return TAI64.fromHexString(value);
-  } else if (typeof value === "number") {
-    return TAI64.fromUnix(value);
-  } else if (Array.isArray(value)) {
-    return TAI64.fromByteArray(value);
-  }
-
-  return TAI64.now();
-};
-
-export { tai64, TAI64 };
+export { TAI64 };

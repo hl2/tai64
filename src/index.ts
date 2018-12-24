@@ -21,4 +21,4 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-export { tai64, TAI64 } from "./TAI64";
+export { TAI64 } from "./TAI64";
