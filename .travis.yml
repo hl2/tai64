@@ -1,6 +1,6 @@
 language: node_js
 
-scripts:
+script:
   - npm run test:ci
 
 deploy:
