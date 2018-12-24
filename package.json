@@ -19,6 +19,9 @@
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "clean": "rimraf lib .nyc_output coverage",
     "lint:src": "tslint -p tsconfig.json",
