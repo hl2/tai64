@@ -20,13 +20,12 @@ npm install --save tai64
 import { TAI64 } from "tai64";
 
 const now = TAI64.now();
-
 const moonLanding = TAI64.fromUnix(
   Math.floor(Date.parse("July 20, 69 00:20:18 UTC") / 1000)
 );
 
-console.log("Current timestamp: %s", now.toHexString());
-console.log("🚀🌝 Moon Landing timestamp: %s", moonLanding.toHexString());
+console.log("Current date: %s", now.toHexString());
+console.log("🚀🌝 Moon Landing: %s", moonLanding.toHexString());
 ```
 
 ## Implementation details

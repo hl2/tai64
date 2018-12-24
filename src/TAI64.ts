@@ -26,11 +26,13 @@ import { addLeapSeconds, removeLeapSeconds } from "./LeapSeconds";
 
 class TAI64 {
   /**
-   * Instance of TAI64 representing the 1970 TAI EPOCH.
+   * Instance of TAI64 representing the second that began 1970 TAI.
    */
   static readonly EPOCH = new TAI64(Long.MAX_VALUE.shiftRight(1).add(1));
 
   /**
+   * Return a TAI64 the current number of seconds elapsed since 1970 TAI.
+   *
    * @returns An instance of TAI64
    */
   static now() {
@@ -40,7 +42,7 @@ class TAI64 {
   }
 
   /**
-   * Returns a TAI64 corresponding to the given UNIX timestamp.
+   * Return a TAI64 corresponding to the given UNIX timestamp.
    *
    * @param timestamp - The UNIX timestamp in seconds
    * @returns An instance of TAI64
@@ -53,8 +55,8 @@ class TAI64 {
   }
 
   /**
-   * Returns a TAI64 corresponding to the given hexadecimal string representing
-   * a TAI64 label. This method is an alias for {@link TAI64.fromString} method.
+   * Return a TAI64 corresponding to the given hexadecimal string representing a TAI64. This method
+   * is an alias for `TAI64#fromString()` method.
    *
    * @param hexString - The hexadecimal string
    * @returns An instance of TAI64
@@ -64,7 +66,7 @@ class TAI64 {
   }
 
   /**
-   * Returns a TAI64 corresponding to the given string representing a TAI64 label in the given radix.
+   * Return a TAI64 corresponding to the given string representing a TAI64 in the given radix.
    *
    * @param str - The string
    * @param radix - An integer that represents the radix (the base in mathematical numeral systems), defaults to `16`
@@ -77,8 +79,7 @@ class TAI64 {
   }
 
   /**
-   * Returns a TAI64 corresponding to the given byte array representing
-   * a TAI64.
+   * Return a TAI64 corresponding to the given byte array representing a TAI64.
    *
    * @param bytes - The byte array
    * @returns An instance of TAI64
@@ -90,11 +91,11 @@ class TAI64 {
   }
 
   /**
-   * Constructs an instance of TAI64.
+   * Construct an instance of TAI64.
    *
    * @param label - The TAI64 label between 0 and 2^63-1, inclusive
    * @returns An instance of TAI64
-   * @throws RangeError if given label is not between 0 and 2^63-1, inclusive
+   * @throws RangeError if the given label is not between 0 and 2^63-1, inclusive
    */
   private constructor(private readonly label: Long) {
     if (label.lt(Long.ZERO) || label.gte(Long.MAX_VALUE)) {
@@ -105,7 +106,7 @@ class TAI64 {
   }
 
   /**
-   * Returns if this TAI64 is after the given TAI64.
+   * Return if this TAI64 is after the given TAI64.
    *
    * @param other - The other TAI64 to compare
    * @returns `true` if this TAI64 is after the given TAI64, `false` otherwise
@@ -115,7 +116,7 @@ class TAI64 {
   }
 
   /**
-   * Returns if this TAI64 is before the given TAI64.
+   * Return if this TAI64 is before the given TAI64.
    *
    * @param other - The other TAI64 to compare
    * @returns `true` if this TAI64 is before the given TAI64, `false` otherwise
@@ -125,7 +126,7 @@ class TAI64 {
   }
 
   /**
-   * Returns if this TAI64 is equal to the given TAI64.
+   * Return if this TAI64 is equal to the given TAI64.
    *
    * @param other - The other TAI64 to compare
    * @returns `true` if this TAI64 is equal to the given TAI64, `false` otherwise
@@ -135,12 +136,12 @@ class TAI64 {
   }
 
   /**
-   * Compares this TAI64 to the given TAI64.
+   * Compare this TAI64 to the given TAI64.
    *
    * @param other - The other TAI64 to compare
    * @returns
-   * - `-1` if this TAI64 is before the given TAI64
    * - `1` if this TAI64 is before the given TAI64
+   * - `-1` if this TAI64 is before the given TAI64
    * - `0` if this TAI64 is equal to the given TAI64
    */
   compareTo(other: TAI64) {
@@ -148,22 +149,22 @@ class TAI64 {
   }
 
   /**
-   * Returns a byte array representation of this TAI64.
+   * Return a byte array representation of this TAI64.
    */
   toByteArray() {
     return this.label.toBytes();
   }
 
   /**
-   * Returns an hexadecimal string representation of this TAI64 label. This method
-   * is an alias for {@link TAI64.toString} method.
+   * Return an hexadecimal string representation of this TAI64. This method
+   * is an alias for `TAI64#toString()` method.
    */
   toHexString() {
     return this.toString();
   }
 
   /**
-   * Returns a string representation of this TAI64 label.
+   * Return a string representation of this TAI64.
    *
    * @param radix - An integer that represents the radix (the base in mathematical numeral systems), defaults to `16`
    */
@@ -172,7 +173,7 @@ class TAI64 {
   }
 
   /**
-   * Returns a UNIX timestamp corresponding to this TAI64 label.
+   * Return a UNIX timestamp corresponding to this TAI64.
    */
   toUnix() {
     const elapsedSeconds = this.label.sub(TAI64.EPOCH.label);
