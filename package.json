@@ -30,11 +30,11 @@
     "build": "tsc",
     "test": "nyc mocha 'test/**/*.test.ts'",
     "test:ci": "nyc --reporter=lcov mocha 'test/**/*.test.ts' && cat coverage/lcov.info | coveralls",
-    "release": "npm version",
-    "prebuild": "npm-run-all clean lint:src",
-    "pretest": "npm-run-all build lint:test",
-    "pretest:ci": "npm-run-all build lint:test",
-    "prerelease": "npm-run-all test"
+    "prebuild": "run-s clean lint:src",
+    "pretest": "run-s clean lint:test",
+    "pretest:ci": "run-s clean lint:test",
+    "prepack": "run-s build",
+    "preversion": "run-s build test"
   },
   "dependencies": {
     "@types/long": "4.0.0",
