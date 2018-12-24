@@ -22,9 +22,9 @@
  */
 
 import { expect } from "chai";
-import { addLeapSeconds, removeLeapSeconds } from "../src/LeapSeconds";
+import { addLeapSeconds, removeLeapSeconds } from "../src/leapSeconds";
 
-describe("LeapSeconds", () => {
+describe("leapSeconds", () => {
   const getTimeInSeconds = (date: Date) => Math.floor(date.getTime() / 1000);
 
   describe("addLeapSeconds", () => {

@@ -22,7 +22,7 @@
  */
 
 import Long from "long";
-import { addLeapSeconds, removeLeapSeconds } from "./LeapSeconds";
+import { addLeapSeconds, removeLeapSeconds } from "./leapSeconds";
 
 class TAI64 {
   /**

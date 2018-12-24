@@ -32,7 +32,7 @@
  * The number 2208988800 represents the NTP timestamp for the UNIX epoch, which is 1 January 1970, 00:00:00, computed with
  * the following formula (70 * 365 + 17) * 86400.
  */
-const leapSeconds = [
+const leapSeconds: ReadonlyArray<[number, number]> = [
   [1483228800, 37],
   [1435708800, 36],
   [1341100800, 35],
@@ -64,9 +64,9 @@ const leapSeconds = [
 ];
 
 /**
- * Adds leap seconds to the given UNIX timestamp.
+ * Add leap seconds to the given UNIX timestamp.
  *
- * @param timestamp - The UNIX timestamp
+ * @param timestamp - The UNIX timestamp in seconds
  * @returns a timestamp with leap seconds added
  */
 const addLeapSeconds = (timestamp: number) => {
@@ -75,9 +75,9 @@ const addLeapSeconds = (timestamp: number) => {
 };
 
 /**
- * Removes leap seconds from the given timestamp with leap seconds.
+ * Remove leap seconds from the given timestamp including the leap seconds.
  *
- * @param timestamp - The timestamp with leap seconds
+ * @param timestamp - The timestamp in seconds including leap seconds
  * @returns the corresponding UNIX timestamp
  */
 const removeLeapSeconds = (timestamp: number) => {
